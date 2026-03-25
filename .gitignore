@@ -1,0 +1,27 @@
+# .NET Core
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+
+# Node
+node_modules/
+dist/
+build/
+.npm/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Env files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
