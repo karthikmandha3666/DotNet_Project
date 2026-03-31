@@ -1,0 +1,19 @@
+# The standard production way to install Prometheus and Grafana is via Helm.
+# 
+# 1. Add the prometheus-community Helm repo:
+#    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+#    helm repo update
+#
+# 2. Create the monitoring namespace:
+#    kubectl create namespace monitoring
+#
+# 3. Install the Prometheus Stack (includes Prometheus, Grafana, and Alertmanager natively configured together):
+#    helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring
+
+# To properly monitor the .NET and Node.js applications, you should add the following annotations 
+# to your backend and frontend Deployment templates (e.g. inside deployment-blue.yaml under spec.template.metadata.annotations):
+#
+# annotations:
+#   prometheus.io/scrape: "true"
+#   prometheus.io/port: "8080" # or 80 for frontend
+#   prometheus.io/path: "/metrics" # Requires adding prometheus-net to the .NET Backend

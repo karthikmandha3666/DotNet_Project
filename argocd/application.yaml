@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: webproject-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # URL of your Git repository
+    repoURL: 'https://github.com/your-org/webproject.git'
+    targetRevision: HEAD
+    # The path where your K8s YAML files live
+    path: k8s
+  destination:
+    # Deploy to the local cluster where ArgoCD is running
+    server: 'https://kubernetes.default.svc'
+    namespace: webproject
+  syncPolicy:
+    automated:
+      prune: true      # Automatically delete resources that are removed from Git
+      selfHeal: true   # Automatically revert manual changes made to the cluster (Git is the source of truth)
+    syncOptions:
+    - CreateNamespace=true
